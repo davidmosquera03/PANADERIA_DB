@@ -1,6 +1,8 @@
-Instalar django, djangorestframewoek
+Instalar django, djangorestframework
 
--cd bakery
--python manage.py runserver
+Python 3.12.3
 
-tener una base de datos con usuario "baker" clave "ricky2021" en localhost, con servicio XE
++ cd bakery
++ python manage.py runserver
+
+tener una base de datos con usuario "baker" clave "ricky2021" en localhost, con SID xe
