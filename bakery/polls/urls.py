@@ -31,5 +31,6 @@ urlpatterns = [
     path('renew/<int:dom_cod>/', views.Renew.as_view()),
     path('pay/<int:cod_pedido>/', views.PagarPedido.as_view()),
     path('send/<int:codigo>/', views.EnviarPedido.as_view()),
-    path('totalpedido/<int:codigo>/', views.ValorTotalPedido.as_view())
+    path('totalpedido/<int:codigo>/', views.ValorTotalPedido.as_view()),
+    path('load-sql/', views.LoadSQLView.as_view(), name='load-sql'),
 ]
