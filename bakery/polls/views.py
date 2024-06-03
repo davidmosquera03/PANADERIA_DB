@@ -199,7 +199,80 @@ class ValorTotalPedido(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response({'error': 'Pedido not found'}, status=status.HTTP_404_NOT_FOUND)
 
+#PRE LLENADO DE BASE DE DATOS
+class LoadSQLView(APIView):
+    permission_classes = [CustomReadOnly]
+    def get(self, request):
+        try:
+            Categoria.objects.create(cat_id=1, cat_nom='Panaderia', descripcion='Productos de panadería')
+            Categoria.objects.create(cat_id=2, cat_nom='Reposteria', descripcion='Productos de repostería')
+            Categoria.objects.create(cat_id=3, cat_nom='Bebidas', descripcion='Bebidas y refrescos')
 
+            Producto.objects.create(cod=101, nombre='Pan Integral', descripcion='Pan integral fresco', precio=1.50, cat_id=1)
+            Producto.objects.create(cod=102, nombre='Croissant', descripcion='Croissant de mantequilla', precio=0.80, cat_id=1)
+            Producto.objects.create(cod=201, nombre='Pastel de Chocolate', descripcion='Delicioso pastel de chocolate', precio=15.00, cat_id=2)
+            Producto.objects.create(cod=202, nombre='Muffin de Arándanos', descripcion='Muffin con arándanos frescos', precio=2.50, cat_id=2)
+            Producto.objects.create(cod=301, nombre='Café Americano', descripcion='Café negro americano', precio=1.20, cat_id=3)
+            Producto.objects.create(cod=302, nombre='Té Verde', descripcion='Té verde caliente', precio=1.00, cat_id=3)
+
+            Persona.objects.create(cod=10001, nombre='Juan', apellido1='Pérez', apellido2='García', clave='claveJuan')
+            Persona.objects.create(cod=10002, nombre='María', apellido1='López', apellido2='Martínez', clave='claveMaria')
+            Persona.objects.create(cod=10003, nombre='Carlos', apellido1='Herrera', apellido2='Restrepo', clave='claveCarlos')
+            Persona.objects.create(cod=10004, nombre='Juan Salvador', apellido1='Gaviota', apellido2='Bach', clave='claveJuanS')
+            Persona.objects.create(cod=10005, nombre='Cristina', apellido1='Sanchez', apellido2='Salas', clave='claveCristina')
+            
+            Telefono.objects.create(cod_per_id=10001, telefono=555123456)
+            Telefono.objects.create(cod_per_id=10002, telefono=555234567)
+            Telefono.objects.create(cod_per_id=10003, telefono=555345678)
+            Telefono.objects.create(cod_per_id=10004, telefono=3017046839)
+            Telefono.objects.create(cod_per_id=10005, telefono=3108442011)
+            Domiciliario.objects.create(cod_id=10001, vehiculo='Moto', fecha_vencimiento='2025-12-31', atendiendo='N')
+            Domiciliario.objects.create(cod_id=10002, vehiculo='Bicicleta', fecha_vencimiento=None, atendiendo='N')
+            Horario.objects.create(seq=1, dia='Domingo', hora_inicio='08:00', hora_fin='12:00')
+            Horario.objects.create(seq=2, dia='Lunes', hora_inicio='07:30', hora_fin='12:30')
+            Horario.objects.create(seq=3, dia='Lunes', hora_inicio='14:30', hora_fin='18:30')
+            Horario.objects.create(seq=4, dia='Martes', hora_inicio='07:30', hora_fin='12:30')
+            Horario.objects.create(seq=5, dia='Martes', hora_inicio='14:30', hora_fin='18:30')
+            Horario.objects.create(seq=6, dia='Miércoles', hora_inicio='07:30', hora_fin='12:30')
+            Horario.objects.create(seq=7, dia='Miércoles', hora_inicio='14:30', hora_fin='18:30')
+            Horario.objects.create(seq=8, dia='Jueves', hora_inicio='07:30', hora_fin='12:30')
+            Horario.objects.create(seq=9, dia='Jueves', hora_inicio='14:30', hora_fin='18:30')
+            Horario.objects.create(seq=10, dia='Viernes', hora_inicio='07:30', hora_fin='12:30')
+            Horario.objects.create(seq=11, dia='Viernes', hora_inicio='14:30', hora_fin='18:30')
+            Horario.objects.create(seq=12, dia='Sábado', hora_inicio='07:30', hora_fin='12:30')
+            Asignacion.objects.create(cod_dom_id=10001, seq_hor_id=1)
+            Asignacion.objects.create(cod_dom_id=10001, seq_hor_id=2)
+            Asignacion.objects.create(cod_dom_id=10001, seq_hor_id=3)
+            Asignacion.objects.create(cod_dom_id=10001, seq_hor_id=4)
+            Asignacion.objects.create(cod_dom_id=10001, seq_hor_id=5)
+            Asignacion.objects.create(cod_dom_id=10001, seq_hor_id=6)
+            Asignacion.objects.create(cod_dom_id=10002, seq_hor_id=1)
+            Asignacion.objects.create(cod_dom_id=10002, seq_hor_id=2)
+            Asignacion.objects.create(cod_dom_id=10002, seq_hor_id=7)
+            Asignacion.objects.create(cod_dom_id=10002, seq_hor_id=8)
+            Asignacion.objects.create(cod_dom_id=10002, seq_hor_id=9)
+            Asignacion.objects.create(cod_dom_id=10002, seq_hor_id=10)
+            Asignacion.objects.create(cod_dom_id=10002, seq_hor_id=11)
+            Asignacion.objects.create(cod_dom_id=10002, seq_hor_id=12)
+            Cliente.objects.create(cod_id=10004)
+            Cliente.objects.create(cod_id=10005)
+            Direccion.objects.create(dir='Calle 123, Ciudad', cod_per_id=10004)
+            Direccion.objects.create(dir='Avenida 456, Ciudad', cod_per_id=10004)
+            Direccion.objects.create(dir='Carrera 3a #64-56, Ciudad', cod_per_id=10005)
+            Pedido.objects.create(cod=50001, cod_cliente_id=10004, dir_pedido='Calle 123, Ciudad', tipo='Domicilio', estado='Enviado', fecha='2023-05-20')
+            Pedido.objects.create(cod=50002, cod_cliente_id=10005, dir_pedido='Avenida 456, Ciudad', tipo='Domicilio', estado='Completado', fecha='2023-05-20')
+            Pedido.objects.create(cod=50003, cod_cliente_id=10004, dir_pedido='Local', tipo='Recogida', estado='Completado', fecha='2023-05-21')
+            Domicilio.objects.create(cod_id=50001, cod_domiciliario_id=10001, hora_envio='08:44', hora_entrega=None)
+            Domicilio.objects.create(cod_id=50002, cod_domiciliario_id=10002, hora_envio='07:00', hora_entrega='07:45')
+            Detalle.objects.create(cod_pedido_id=50001, cod_producto_id=101, cantidad=2)
+            Detalle.objects.create(cod_pedido_id=50001, cod_producto_id=301, cantidad=1)
+            Detalle.objects.create(cod_pedido_id=50002, cod_producto_id=201, cantidad=1)
+            Detalle.objects.create(cod_pedido_id=50002, cod_producto_id=302, cantidad=2)
+            Administrador.objects.create(cod_id=10003)
+
+            return Response({'status': 'success'}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'status': 'error', 'message': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 def index(request):
     hora,minuto= timezone.localtime(timezone.now()).hour,\
@@ -262,5 +335,5 @@ class DomicilioViewSet(viewsets.ModelViewSet):
     queryset = Domicilio.objects.all()
     serializer_class = DomicilioSerializer
 
-#  QUERIES
+
    

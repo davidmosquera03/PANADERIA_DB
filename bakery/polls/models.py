@@ -31,7 +31,7 @@ class Administrador(models.Model):
         return f"{self.cod}"
     
 class Domiciliario(models.Model):
-    cod = models.OneToOneField(Persona, models.DO_NOTHING, db_column='cod', primary_key=True)
+    cod = models.OneToOneField(Persona, models.CASCADE, db_column='cod', primary_key=True)
     vehiculo = models.CharField(max_length=20, blank=True, null=True) # carro, moto, bicicleta,etc
     fecha_vencimiento = models.DateField(blank=True, null=True)
     atendiendo = models.CharField(max_length=1, blank=True, null=True) # Y or N
@@ -44,7 +44,7 @@ class Domiciliario(models.Model):
     
 class Direccion(models.Model):
     dir = models.CharField(max_length=100,null=False,blank=False)
-    cod_per = models.ForeignKey(Persona, models.CASCADE, db_column='cod_cliente',null=False,blank=False)
+    cod_per = models.ForeignKey(Persona, models.CASCADE, db_column='cod_per',null=False,blank=False)
 
     class Meta:
         db_table = 'direccion'
