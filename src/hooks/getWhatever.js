@@ -1,5 +1,4 @@
-export async function getPersonas () {
-  const url = 'http://127.0.0.1:8000/polls/api/v1/personas/'
+export async function getWhatever (url) {
   try {
     const response = await fetch(url)
     if (!response.ok) {

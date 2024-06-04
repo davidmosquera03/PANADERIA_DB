@@ -1,7 +1,7 @@
-import { getPersonas } from './getPersonas.js'
+import { getWhatever } from './getWhatever.js'
 
 export function findBiggestCod () {
-  return getPersonas().then(personas => {
+  return getWhatever('http://127.0.0.1:8000/polls/api/v1/personas/').then(personas => {
     if (personas) {
       return fetchCods(personas)
     }

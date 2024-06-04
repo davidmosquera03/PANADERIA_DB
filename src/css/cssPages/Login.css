@@ -126,3 +126,17 @@ h2 {
 .btn:hover {
     opacity: 0.9;
 }
+
+.error {
+  color: #ff4d4d; /* Rojo vibrante para atraer la atención */
+  background-color: #ffe6e6; /* Fondo claro para hacer el texto más legible */
+  border: 1px solid #ff4d4d; /* Borde para definir claramente el área del error */
+  padding: 10px; /* Espaciado interno para mejor legibilidad */
+  margin: 10px 0; /* Espaciado externo para separación de otros elementos */
+  border-radius: 5px; /* Esquinas redondeadas para un estilo más moderno */
+  font-size: 14px; /* Tamaño de fuente para asegurar legibilidad */
+  text-align: center; /* Centrar el texto */
+  max-width: 300px; /* Limitar el ancho máximo */
+  margin-left: auto; /* Centrar horizontalmente */
+  margin-right: auto; /* Centrar horizontalmente */
+}
