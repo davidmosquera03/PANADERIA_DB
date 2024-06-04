@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from polls.models import *
-from rest_framework import viewsets,status
+from rest_framework import viewsets,status, permissions
 from rest_framework.response import Response
 from .serializer import *
 from django.shortcuts import render,get_object_or_404
@@ -285,54 +285,67 @@ def detail(request,cod):
 
 class PersonaViewSet(viewsets.ModelViewSet):
     queryset = Persona.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = PersonaSerializer
 
 class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = ClienteSerializer
 
 class AdministradorViewSet(viewsets.ModelViewSet):
     queryset = Administrador.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = AdministradorSerializer
 
 class DomiciliarioViewSet(viewsets.ModelViewSet):
     queryset = Domiciliario.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = DomiciliarioSerializer
 
 class DireccionViewSet(viewsets.ModelViewSet):
     queryset = Direccion.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = DireccionSerializer
 
 class TelefonoViewSet(viewsets.ModelViewSet):
     queryset = Telefono.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = TelefonoSerializer
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = CategoriaSerializer
 
 class HorarioViewSet(viewsets.ModelViewSet):
     queryset = Horario.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = HorarioSerializer
 
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = ProductoSerializer
 
 class AsignacionViewSet(viewsets.ModelViewSet):
     queryset = Asignacion.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = AsignacionSerializer
 
 class PedidoViewSet(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = PedidoSerializer
 
 class DetalleViewSet(viewsets.ModelViewSet):
     queryset = Detalle.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = DetalleSerializer
 
 class DomicilioViewSet(viewsets.ModelViewSet):
     queryset = Domicilio.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = DomicilioSerializer
 
 
