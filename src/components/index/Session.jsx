@@ -1,3 +1,5 @@
+import { getPersonas } from '../../hooks/getPersonas.js'
+
 export default function Session () {
   const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'))
 
@@ -5,10 +7,10 @@ export default function Session () {
     console.log(loggedInUser.username)
   }
 
-  //   function logout () {
-  //     localStorage.removeItem('loggedInUser')
-  //     window.location.href = 'index.html'
-  //   }
+  getPersonas().then(personas => {
+    console.log(personas)
+  })
+
   return (
     <div>
       {loggedInUser
@@ -17,7 +19,7 @@ export default function Session () {
           )
         : (
             <div className="header_login">
-            <a className="register">Registrarse</a>
+            <a href="./register.html" className="register">Registrarse</a>
             <a href="./login.html">Iniciar Sesión</a>
           </div>
           )}
