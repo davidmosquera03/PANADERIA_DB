@@ -1,6 +1,6 @@
 import { findBiggestCod } from './findBiggestCod.js'
 
-export default async function createNewAccounts (nombre, apellido1, apellido2, password) {
+export default async function createNewAccounts (nombre, apellido1, apellido2, clave) {
   const url = 'http://127.0.0.1:8000/polls/api/v1/personas/'
   try {
     const cod = await findBiggestCod()
@@ -8,7 +8,7 @@ export default async function createNewAccounts (nombre, apellido1, apellido2, p
     console.log('nombre', nombre)
     console.log('apellido1', apellido1)
     console.log('apellido2', apellido2)
-    console.log('password', password)
+    console.log('password', clave)
 
     const response = await fetch(url, {
       method: 'POST',
@@ -20,7 +20,7 @@ export default async function createNewAccounts (nombre, apellido1, apellido2, p
         nombre,
         apellido1,
         apellido2,
-        password
+        clave
       })
     })
 
