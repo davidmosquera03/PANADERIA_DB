@@ -209,3 +209,40 @@ button {
   margin: 4px 2px;
   cursor: pointer;
 }
+
+.total-container {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.total-container h3 {
+  color: #495057;
+}
+.total-container p {
+  font-size: 24px;
+  color: #212529;
+}
+.selected-products {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 20px;
+}
+.selected-products h3 {
+  color: #495057;
+}
+.selected-products ul {
+  list-style-type: none;
+}
+.selected-products li {
+  margin-bottom: 10px;
+  color: #212529;
+}
+
+.total-flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 2rem;
+}

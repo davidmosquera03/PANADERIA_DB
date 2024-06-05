@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { getWhatever } from '../../hooks/getWhatever.js'
+import knowRol from '../../hooks/knowRol.js'
 
 export default function LoginModal () {
   const [username, setUsername] = useState('')
@@ -8,14 +9,20 @@ export default function LoginModal () {
 
   async function authenticate (e) {
     e.preventDefault()
+
     try {
       const personas = await getWhatever('http://127.0.0.1:8000/polls/api/v1/personas/')
       if (personas) {
         const user = personas.find(persona => persona.nombre === username && persona.clave === password)
+
         if (user) {
-          console.log('Bienvenido')
           sessionStorage.setItem('loggedInUser', JSON.stringify(user))
-          window.location.href = 'index.html'
+          const rol = await knowRol(user.cod)
+          if (rol === 'cliente' || rol === 'admin' || rol === 'domiciliario') {
+            window.location.href = 'index.html'
+          } else {
+            setError('Rol no reconocido')
+          }
         } else {
           setError('Usuario o contraseña incorrectos')
         }
