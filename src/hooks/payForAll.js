@@ -1,3 +1,3 @@
-export default function payForAll (productos, cantidadProductos) {
+export default function payForAll (productos) {
   console.log('productos', productos)
 }
