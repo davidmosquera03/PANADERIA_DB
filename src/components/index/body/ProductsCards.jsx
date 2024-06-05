@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getWhatever } from '../../../hooks/getWhatever.js'
+import getAmountOfProduct from '../../../hooks/getAmountOfProduct.js'
+import payForAll from '../../../hooks/payForAll.js'
 
 export default function ProductsCards () {
   const [productos, setProductos] = useState([])
@@ -18,11 +20,28 @@ export default function ProductsCards () {
     fetchProductos()
   }, [])
 
-  const handleIncrement = (nombre) => {
-    setCantidadProductos((prevCantidadProductos) => ({
-      ...prevCantidadProductos,
-      [nombre]: (prevCantidadProductos[nombre] || 0) + 1
-    }))
+  const handleIncrement = (producto) => {
+    let cantidadFutura
+    if (isNaN(cantidadProductos[producto.nombre] + 1)) {
+      cantidadFutura = 1
+    } else {
+      cantidadFutura = cantidadProductos[producto.nombre] + 1
+    }
+
+    getAmountOfProduct(producto.cod, cantidadFutura)
+      .then((result) => {
+        if (!result) {
+          return
+        }
+        setCantidadProductos((prevCantidadProductos) => ({
+          ...prevCantidadProductos,
+          [producto.nombre]: (prevCantidadProductos[producto.nombre] || 0) + 1
+        }))
+      })
+      .catch((error) => {
+        // Manejar errores si ocurren
+        console.error(error)
+      })
   }
 
   const handleDecrement = (nombre) => {
@@ -53,28 +72,32 @@ export default function ProductsCards () {
             <p>{producto.descripcion}</p>
             <p>Precio: ${producto.precio}</p>
             <div>
-              <button onClick={() => handleIncrement(producto.nombre)}>+</button>
+              <button onClick={() => handleIncrement(producto)}>+</button>
               <button onClick={() => handleDecrement(producto.nombre)}>-</button>
             </div>
             <p>Cantidad seleccionada: {cantidadProductos[producto.nombre] || 0}</p>
           </div>
         ))}
       </div>
-      <div className="total-container">
-        <h3>Total</h3>
-        <p>${total}</p>
-      </div>
-      <div className="selected-products">
-        <h3>Productos Seleccionados</h3>
-        <ul>
-          {Object.keys(cantidadProductos).map((nombreProducto) => (
-            <li key={nombreProducto}>
-              {nombreProducto}: {cantidadProductos[nombreProducto]} (
-              {(cantidadProductos[nombreProducto] * productos.find((prod) => prod.nombre === nombreProducto).precio).toFixed(2)})
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className='total-flex'>
+        <div className="selected-products">
+          <h3>Productos Seleccionados</h3>
+          <ul>
+            {Object.keys(cantidadProductos).map((nombreProducto) => (
+              <li key={nombreProducto}>
+                {nombreProducto}: {cantidadProductos[nombreProducto]} (
+                {(cantidadProductos[nombreProducto] * productos.find((prod) => prod.nombre === nombreProducto).precio).toFixed(2)})
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="total-container">
+          <h3>Total</h3>
+          <p>${total}</p>
+        </div>
+        </div>
+
+        <button onClick={() => payForAll(cantidadProductos)}>PAGAR</button>
     </div>
   )
 }
