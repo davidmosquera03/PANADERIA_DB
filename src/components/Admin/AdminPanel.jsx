@@ -22,6 +22,7 @@ export default function AdminPanel () {
 
     try {
       await addProducts(cod, nombre, descripcion, precio, cat)
+      alert('Producto añadido correctamente.');
     } catch (error) {
       console.error('Error al añadir producto:', error)
     }
@@ -38,6 +39,7 @@ export default function AdminPanel () {
 
     try {
       await deleteProduct(cod);
+      alert('Producto eliminado correctamente.');
     } catch (error) {
       console.error('Error al eliminar producto:', error);
     }
