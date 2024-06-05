@@ -21,23 +21,11 @@ export default function ProductsCards () {
   }, [])
 
   const handleIncrement = (producto) => {
-    let cantidadFutura
-    if (isNaN(cantidadProductos[producto.nombre] + 1)) {
-      cantidadFutura = 1
-    } else {
-      cantidadFutura = cantidadProductos[producto.nombre] + 1
-    }
+    setCantidadProductos((prevCantidadProductos) => ({
+      ...prevCantidadProductos,
+      [producto.nombre]: (prevCantidadProductos[producto.nombre] || 0) + 1
+    }))
 
-    getAmountOfProduct(producto.cod, cantidadFutura)
-      .then((result) => {
-        if (!result) {
-          return
-        }
-        setCantidadProductos((prevCantidadProductos) => ({
-          ...prevCantidadProductos,
-          [producto.nombre]: (prevCantidadProductos[producto.nombre] || 0) + 1
-        }))
-      })
       .catch((error) => {
         // Manejar errores si ocurren
         console.error(error)
@@ -51,6 +39,10 @@ export default function ProductsCards () {
         [nombre]: prevCantidadProductos[nombre] - 1
       }))
     }
+  }
+
+  const carrito = (productos) => {
+
   }
 
   useEffect(() => {
@@ -97,7 +89,7 @@ export default function ProductsCards () {
         </div>
         </div>
 
-        <button onClick={() => payForAll(cantidadProductos)}>PAGAR</button>
+        <button>Continuar con el Pago</button>
     </div>
   )
 }
