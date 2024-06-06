@@ -1,0 +1,94 @@
+.pago-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+  
+  .productos-lista {
+    list-style: none;
+  }
+  
+  .producto-item {
+    margin-bottom: 5px;
+  }
+  
+  .total-pagar {
+    margin-top: 20px;
+  }
+  
+  .opciones-entrega {
+    margin-top: 20px;
+  }
+  
+  .opcion-label {
+    font-weight: bold;
+  }
+  
+  .opcion-select {
+    margin-left: 10px;
+  }
+  
+  .direccion-seleccion {
+    margin-top: 10px;
+  }
+  
+  .select-direccion {
+    margin-bottom: 10px;
+  }
+  
+  .direccion-label {
+    font-weight: bold;
+  }
+  
+  .direccion-select {
+    margin-left: 10px;
+  }
+  
+  .nueva-direccion {
+    margin-top: 10px;
+  }
+  
+  .nueva-direccion-label {
+    font-weight: bold;
+  }
+  
+  .nueva-direccion-input {
+    margin-left: 10px;
+    width: 200px;
+  }
+  
+  .boton-pagar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .boton-pagar:hover {
+    background-color: #0056b3;
+  }
+  
+  .estado-pedido {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .boton-actualizar {
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .boton-actualizar:hover {
+    background-color: #218838;
+  }
+  

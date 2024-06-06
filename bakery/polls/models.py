@@ -114,7 +114,7 @@ class Pedido(models.Model):
     dir_pedido = models.CharField(max_length=100, blank=True, null=True)
     tipo = models.CharField(max_length=100, blank=True, null=True)
     estado = models.CharField(max_length=100, blank=True, null=True)
-    fecha = models.DateField(blank=True, null=True)
+    fecha = models.DateField(auto_now=True)
     products = models.ManyToManyField(Producto,through='Detalle')
     class Meta:
         db_table = 'pedido'
