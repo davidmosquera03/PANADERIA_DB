@@ -64,32 +64,28 @@ export default function AdminPanel () {
       alert('Error al eliminar el producto. Por favor, inténtelo de nuevo.');
     }
   };
+
   
 
-  const handleUpdate = async (event) => {
-    event.preventDefault();
-  
-    // Validar que el código del producto esté presente
-    if (!cod) {
-      alert('Ingrese el código del producto.');
-      return;
-    }
-  
+const handleUpdate = async (event) => {
+  event.preventDefault();
+
+  // Verificar si algún campo está vacío
+  if (!nombre || !descripcion || !precio || !cat) {
+    alert("Complete todos los campos");
+    return;
+  }
+
+  try {
     // Realizar la actualización solo si al menos un campo ha sido modificado
-    if (nombre || descripcion || precio || cat) {
-      try {
-        console.log('Datos a enviar a updateProduct:', cod, nombre, descripcion, precio, cat);
-        await updateProduct(cod, nombre, descripcion, precio, cat);
-        alert('Producto actualizado correctamente.');
-      } catch (error) {
-        console.error('Error al actualizar producto:', error);
-        alert('Error al actualizar el producto. Por favor, inténtelo de nuevo.');
-      }
-    } else {
-      alert('No se ha realizado ninguna modificación.');
-    }
-  };
-  
+    console.log('Datos a enviar a updateProduct:', cod, nombre, descripcion, precio, cat);
+    await updateProduct(cod, nombre, descripcion, precio, cat);
+    alert('Producto actualizado correctamente.');
+  } catch (error) {
+    console.error('Error al actualizar producto:', error);
+    alert('Error al actualizar el producto. Por favor, inténtelo de nuevo.');
+  }
+};
 
   return (
     <form className="admin-form">
