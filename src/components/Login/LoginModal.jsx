@@ -18,11 +18,14 @@ export default function LoginModal () {
         if (user) {
           sessionStorage.setItem('loggedInUser', JSON.stringify(user))
           const rol = await knowRol(user.cod)
-          if (rol === 'cliente' || rol === 'domiciliario') {
+          if (rol === 'cliente' ) {
             window.location.href = 'index.html'
           } else if (rol === 'admin') {
             window.location.href = 'admin.html'
-          } else {
+          } else if(rol == 'domiciliario'){
+            window.location.href = 'domiciliario.html'
+          }
+           else {
             setError('Rol no reconocido')
           }
         } else {
