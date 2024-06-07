@@ -1,7 +1,7 @@
 // updateProducts.js
 // updateProducts.js
 export default async function updateProduct(cod, nombre, descripcion, precio, cat) {
-  const url = `http://127.0.0.1:8000/polls/api/v1/productos/${cod}`;
+  const url = `http://127.0.0.1:8000/polls/api/v1/productos/${cod}/`;
 
   try {
     const response = await fetch(url, {
@@ -10,6 +10,7 @@ export default async function updateProduct(cod, nombre, descripcion, precio, ca
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        cod, 
         nombre,
         descripcion,
         precio,
@@ -20,7 +21,7 @@ export default async function updateProduct(cod, nombre, descripcion, precio, ca
     if (response.ok) {
       console.log('Producto actualizado exitosamente');
     } else {
-      console.error('Error al actualizar el producto');
+      console.error('Error al actualizar el producto', await response.text());
     }
   } catch (error) {
     console.error('Se produjo un error al actualizar el producto:', error);
