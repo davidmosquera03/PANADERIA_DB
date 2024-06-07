@@ -1,11 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { getWhatever } from '../../hooks/putProductos.js';
+import createDomicilio from '../../hooks/createDomicilio.js';
+import updateOrderStatus from '../../hooks/updateOrderStatus.js';
 
 export default function OrderPanel () {
 
   const [orders, setOrders] = useState([]);
-
+  const [loggedInUser, setLoggedInUser] = useState(JSON.parse(sessionStorage.getItem('loggedInUser')));
   useEffect(() => {
     const fetchOrders = async () => {
       const url = 'http://127.0.0.1:8000/polls/api/v1/pedidos/';
@@ -17,7 +19,27 @@ export default function OrderPanel () {
     };
     fetchOrders();
   }, []);
+  const handleButtonClick = async (orderCod) => {
+    if (loggedInUser) {
+      const personas = await getWhatever('http://127.0.0.1:8000/polls/api/v1/personas/');
+      const user = personas.find(persona => persona.nombre === loggedInUser.nombre);
+      const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+      console.log('orderCod:', orderCod);
+      console.log('currentTime:', currentTime);
+      console.log('user.cod:', user.cod);
+
+      try {
+        await createDomicilio(orderCod, currentTime, user.cod);
+        await updateOrderStatus(orderCod);
+        
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    } else {
+      
+    }
+  };
   return (
     <div class="container">
      <div className="order-list">
@@ -35,6 +57,7 @@ export default function OrderPanel () {
               <li key={product}>{product}</li>
             ))}
           </ul>
+          <button className="styled-button" onClick={handleButtonClick}>Escoger pedido</button>
         </div>
       ))}
      </div>
