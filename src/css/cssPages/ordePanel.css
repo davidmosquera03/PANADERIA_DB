@@ -23,7 +23,7 @@ body {
     border-color: red;
     background-color: rgb(252, 235, 235);
   }
-      
+   
   .order-item.completed {
     border-color: green;
     background-color: rgb(242, 255, 242);

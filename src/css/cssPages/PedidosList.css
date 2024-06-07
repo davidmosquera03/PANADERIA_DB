@@ -1,0 +1,44 @@
+/* src/components/PedidosList.css */
+
+.PedidosList {
+    padding: 20px;
+}
+
+.PedidosList h2 {
+    color: #333;
+}
+
+.PedidosList ul {
+    list-style: none;
+    padding: 0;
+}
+
+.PedidosList li {
+    background: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.PedidosList p {
+    margin: 0;
+    color: #555;
+}
+
+.PedidosList button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.PedidosList button:hover {
+    background-color: #218838;
+}
